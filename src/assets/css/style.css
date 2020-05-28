@@ -1113,6 +1113,11 @@ textarea:focus {
   padding: 1rem 5rem;
 }
 
+.popup img{
+  height: 600px;
+  width: 850px;
+}
+
 /*Media*/
 @media (max-width: 1400px) {
   .main {
