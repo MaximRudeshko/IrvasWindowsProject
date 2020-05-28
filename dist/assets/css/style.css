@@ -366,7 +366,7 @@ textarea:focus {
   padding: 8rem 0;
 }
 
-.glazing_slider{
+.glizing_slider{
   display: flex;
   justify-content: space-around;
 }
@@ -500,11 +500,6 @@ textarea:focus {
 .decoration {
   padding: 8rem 0;
   background-color: #f7f7f7;
-}
-
-.decoration_slider{
-  display: flex;
-  justify-content: space-between;
 }
 
 .decoration_item {

@@ -1,36 +1,39 @@
-const tabs = (headerSelector,tabSelector,contentSelector,activeClass) => {
+const tabs = (headerSelector, tabSelector, contentSelector, activeClass, display = 'block') => {
     const header = document.querySelector(headerSelector),
           tab = document.querySelectorAll(tabSelector),
-          tabContent = document.querySelectorAll(contentSelector);
+          content = document.querySelectorAll(contentSelector);
 
-    function hideTabContent(){
-        tabContent.forEach(item => {
-            item.style.display = 'none'
-        }) 
+    function hideTabContent() {
+        content.forEach(item => {
+            item.style.display = 'none';
+        });
 
         tab.forEach(item => {
-            item.classList.remove(activeClass)
-        })
+            item.classList.remove(activeClass);
+        });
     }
 
-    function showTabContent(i = 0){
-        tabContent[i].style.display = 'block';
+    function showTabContent(i = 0) {
+        content[i].style.display = display;
         tab[i].classList.add(activeClass);
     }
 
     hideTabContent();
     showTabContent();
 
-    header.addEventListener('click', e => {
-        if(e.target && (e.target.classList.contains(tabSelector.replace(/\./, '')) || e.target.parentNode.classList.contains(tabSelector.replace(/\./, '')))){
+    header.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target &&
+            (target.classList.contains(tabSelector.replace(/\./, "")) || 
+        target.parentNode.classList.contains(tabSelector.replace(/\./, "")))) {
             tab.forEach((item, i) => {
-                if(e.target == item || e.target.parentNode == item){
+                if (target == item || target.parentNode == item) {
                     hideTabContent();
-                    showTabContent(i)
+                    showTabContent(i);
                 }
-            })
+            });
         }
-    })
-}
+    });
+};
 
-export default tabs
+export default tabs;
