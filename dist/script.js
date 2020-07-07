@@ -4135,7 +4135,8 @@ __webpack_require__.r(__webpack_exports__);
 var images = function images() {
   var imgPopup = document.createElement('div'),
       workSection = document.querySelector('.works'),
-      bigImage = document.createElement('img');
+      bigImage = document.createElement('img'),
+      scroll = calcScroll();
   imgPopup.classList.add('popup');
   workSection.appendChild(imgPopup);
   imgPopup.style.cssText = "\n        display: none;\n        align-items: center;\n        justify-content: center;\n    ";
@@ -4145,14 +4146,31 @@ var images = function images() {
 
     if (e.target && e.target.classList.contains('preview')) {
       imgPopup.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      document.body.style.marginRight = "".concat(scroll, "px");
       var path = e.target.parentNode.getAttribute('href');
       bigImage.src = path;
     }
 
     if (e.target.classList.contains('popup')) {
       imgPopup.style.display = 'none';
+      document.body.style.overflow = '';
+      document.body.style.marginRight = '0px';
     }
   });
+
+  function calcScroll() {
+    var div = document.createElement('div');
+    div.style.width = '50px';
+    div.style.height = "50px";
+    div.style.overflowY = 'scroll';
+    div.style.visibility = 'hidden';
+    document.body.appendChild(div);
+    var scrollWidth = div.offsetWidth - div.clientWidth;
+    console.log(scrollWidth);
+    div.remove();
+    return scrollWidth;
+  }
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (images);
@@ -4236,6 +4254,7 @@ var modals = function modals() {
     div.style.visibility = 'hidden';
     document.body.appendChild(div);
     var scrollWidth = div.offsetWidth - div.clientWidth;
+    console.log(scrollWidth);
     div.remove();
     return scrollWidth;
   }
@@ -4244,7 +4263,8 @@ var modals = function modals() {
   bindModal('.phone_link', '.popup', '.popup .popup_close');
   bindModal('.popup_calc_btn', '.popup_calc', '.popup_calc_close');
   bindModal('.popup_calc_button', '.popup_calc_profile', '.popup_calc_profile_close', false);
-  bindModal('.popup_calc_profile_button', '.popup_calc_end', '.popup_calc_end_close', false); // showModalByTime('.popup', 60000);
+  bindModal('.popup_calc_profile_button', '.popup_calc_end', '.popup_calc_end_close', false);
+  showModalByTime('.popup', 60000);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modals);
